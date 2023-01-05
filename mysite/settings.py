@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-import os
+import os, sys, dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    'hello',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -73,16 +74,24 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ["PGDATABASE"],
-        'USER': os.environ["PGUSER"],
-        'PASSWORD': os.environ["PGPASSWORD"],
-        'HOST': os.environ["PGHOST"],
-        'PORT': os.environ["PGPORT"],
-    }
-}
+# DEVELOPEMENT_MODE flag to switch between developement and production
+DEVELOPEMENT_MODE = True
+
+if DEVELOPEMENT_MODE is True:
+	DATABASES = {
+		"default": {
+			"ENGINE": "django.db.backends.sqlite3",
+			"NAME": os.path.join(BASE_DIR, "db.sqlite3")
+		}
+	}
+
+elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
+	if os.getenv("DATABASE_URL", None) is None:
+		raise Exception("DATABASE_URL environment variable not defined!")
+	else:
+		DATABASES = {
+			"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+		}
 
 
 # Password validation
@@ -124,4 +133,5 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
+AUTH_USER_MODEL = 'hello.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
