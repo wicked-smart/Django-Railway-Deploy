@@ -6,4 +6,17 @@ class User(AbstractUser):
     pass  
 
 
+class Airport(models.Model):
+    city = models.CharField(max_length=120)
+    code = models.CharField(max_length=3)
 
+    def __str__(self):
+        return f"{self.city} ({self.code})"
+
+class Flight(models.Model):
+    origin = models.ForeignKey(Airport, on_delete=models.CASCADE, related_name="Departures")
+    destination = models.ForeignKey(Airport, on_delete=models.CASCADE, related_name="Arrivals")
+    duration = models.IntegerField(default=230)
+
+    def __str__(self):
+        return f"{self.origin} to {self.destination}"
