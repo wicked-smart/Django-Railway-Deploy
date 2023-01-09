@@ -1,0 +1,51 @@
+{% extends "hello/layout.html" %}
+
+{% block title %}
+    Flight {{ flight.id }} details :- 
+{% endblock %}
+
+{% block body %}
+
+    {% if message %}
+        <h1 style="color: red"> {{ message }}</h1>
+    {% endif %}
+
+    <h1> Flight {{ flight.id }} </h1>
+   
+
+        Origin: {{ flight.origin }}<br>
+        Destination:- {{ flight.destination }} <br>
+        Duration:- {{ flight.duration }} mins. 
+    <br>
+    <hr>
+
+    <h1>
+        Passengers on the flight :- 
+    </h1>
+
+    {% for passenger in passengers %}
+        <li>{{ passenger.first_name }} {{ passenger.last_name }} </li>
+    {% endfor %}
+
+    <hr>
+    <lablel for="passe"><h1>Non-Passengers :-</h1> </lablel>
+
+    <form method="post" action="{% url 'book' flight.id %}">
+        {% csrf_token %}
+        <select name="passenger" id="passe">
+            {% for passenger in non_passengers %}
+                <option value="{{ passenger.id }}">{{ passenger.first_name }} {{ passenger.last_name }} </option>
+            {% endfor %}
+        </select>
+        <button>book</button>
+    </form>
+    
+
+
+    <br>
+
+    <br>
+    <a href="{% url 'index' %}"> Home Page</a>
+
+{% endblock %}
+    
