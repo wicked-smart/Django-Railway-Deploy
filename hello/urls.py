@@ -10,4 +10,4 @@ urlpatterns = [
     path('<int:flight_id>/book', views.book, name="book")
 ]
 
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+#urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

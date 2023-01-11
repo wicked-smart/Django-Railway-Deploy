@@ -1,54 +1,24 @@
+{% load static %}
+
 <html>
     <head>
         <title>SinglePageApp</title>
-        <style>
-            div{
-                display: none;
-            }
-        </style>
-
-        <script>
-            //function to show a particular section of page
-            function showSection(section){
-
-                console.log(section)
-
-                document.querySelectorAll('div').forEach((div) => {
-                    div.style.display = 'none';
-                })
-
-                var foo = document.querySelector(`#${section}`)
-                foo.style.display = 'block'
-            }
-
-            document.addEventListener('DOMContentLoaded', function(){
-                    //get all the buttons
-                    var buttons = document.querySelectorAll('button');
-
-                    //for every click log the value in the console
-                    buttons.forEach((button) => {
-                        button.onclick = () => {
-                           showSection(button.dataset.section);
-                        }
-                    })
-
-                
-            });
-        </script>
+        <link rel="stylesheet" href="{% static 'singlepageapp/css/stylesheet.css' %}">
+        <script type="text/javascript" src="{% static 'singlepageapp/js/index.js' %}"></script>   
     </head>
 
     <body>
-        <button data-section="section1">About SRK</button>
-        <button data-section="section2">About Pathan</button>
+        <button data-section="section1">section 1</button>
+        <button data-section="section2">section 2</button>
         <button data-section="section3">section 3</button>
         <button data-section="section4">section 4</button>
 
         <div id="section1">
-            <h1>shahrukh bhai ki picture bawaaal chhe...</h1>
+            <h1>Calling from section 1</h1>
         </div>
 
         <div id="section2">
-            <h1>Pathaan aaaaaa gela re babpuuuuu....</h1>
+            <h1>this seems like section 2</h1>
         </div>
 
         <div id="section3">
