@@ -3,7 +3,6 @@
 import os
 import sys
 
-#testing ChatGPT
 
 def main():
     """Run administrative tasks."""
