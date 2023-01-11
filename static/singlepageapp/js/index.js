@@ -1,7 +1,7 @@
 //function to show a particular section of page
 function showSection(section){
 
-    console.log(section)
+    
 
     document.querySelectorAll('div').forEach((div) => {
         div.style.display = 'none';
