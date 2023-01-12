@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 # DEVELOPEMENT_MODE flag to switch between developement and production
-DEVELOPEMENT_MODE = True
+DEVELOPEMENT_MODE = False
 
 if DEVELOPEMENT_MODE is True:
 	DATABASES = {
