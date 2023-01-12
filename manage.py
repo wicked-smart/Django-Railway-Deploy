@@ -3,6 +3,7 @@
 import os
 import sys
 
+#foobar
 
 def main():
     """Run administrative tasks."""
