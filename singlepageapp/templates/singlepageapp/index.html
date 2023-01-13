@@ -3,31 +3,17 @@
 <html>
     <head>
         <title>SinglePageApp</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'singlepageapp/css/stylesheet.css' %}">
+        <link rel="stylesheet"  href="{% static 'singlepageapp/css/stylesheet.css' %}">
         <script type="text/javascript" src="{% static 'singlepageapp/js/index.js' %}"></script>   
     </head>
 
     <body>
-        <button data-section="section1">section 1</button>
-        <button data-section="section2">section 2</button>
-        <button data-section="section3">section 3</button>
-        <button data-section="section4">section 4</button>
-
-        <div id="section1">
-            <h1>Calling from section 1</h1>
-        </div>
-
-        <div id="section2">
-            <h1>this seems like section 2</h1>
-        </div>
-
-        <div id="section3">
-            <h1>This is section 3</h1>
-        </div>
-
-        <div id="section4">
-            <h1>This is section 4</h1>
-        </div>
+        <button data-section="1">section 1</button>
+        <button data-section="2">section 2</button>
+        <button data-section="3">section 3</button>
+        <button data-section="4">section 4</button>
+        <br>
+        <div id="section"></div>
 
     </body>
 </html>
