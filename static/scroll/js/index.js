@@ -4,9 +4,11 @@ function createPosts(num){
     for(let i=1; i<=num; i++){
         let div = document.createElement('div')
         var bar = "posts #" + i 
-        div.innerHTML = `<h2> ${bar} </h2><br>`
+        div.innerHTML = `<h2> ${bar} </h2>`
         div.classList.add('post')
+        
         parent.append(div)
+        parent.append(document.createElement('br'))
     }
 
 }
