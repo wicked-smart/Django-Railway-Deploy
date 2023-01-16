@@ -21,7 +21,8 @@ from . import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', include('hello.urls')),
-    path('singlepageapp/', include('singlepageapp.urls'))
+    path('singlepageapp/', include('singlepageapp.urls')),
+    path('scrollapp/', include('scroll.urls'))
 ]
 
 
