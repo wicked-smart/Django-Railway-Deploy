@@ -1,27 +1,44 @@
-// create posts 
-function createPosts(num){
-    var parent = document.querySelector('#posts')
-    for(let i=1; i<=num; i++){
-        let div = document.createElement('div')
-        var bar = "posts #" + i 
-        div.innerHTML = `<h2> ${bar} </h2>`
-        div.classList.add('post')
-        
-        parent.append(div)
-        parent.append(document.createElement('br'))
-    }
 
+let counter=1;
+let quantity = 20;
+
+
+// load first 20 posts
+document.addEventListener("DOMContentLoaded", load);
+
+// If scrolled to the bottom , load 20 more posts
+window.onscroll = () => {
+    if(window.scrollY + window.innerHeight >= document.body.offsetHeight)
+        load();
 }
 
 
-// call createPosts on Document load
-document.addEventListener("DOMContentLoaded", function(){
-    createPosts(10)
+function load(){
+    let start = counter
+    let end = start + quantity -1
+    counter = end + 1
 
-    window.onscroll = () => {
-        if(window.scrollY + window.innerHeight >= document.body.offsetHeight)
-            document.querySelector('body').style.background = 'green'
-        else
-            document.querySelector('body').style.background = 'white'
-    }
-})
+    //fetch the posts
+    fetch(`posts?start=${start}&end=${end}`)
+    .then(response => response.json())
+    .then(data => {
+        data.posts.forEach(addPost)
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
+
+// add posts to the parent
+function addPost(content){
+    var parent = document.querySelector('#posts')
+
+    // create div element
+    var div = document.createElement('div')
+    div.innerHTML = content
+    div.classList.add("post")
+
+    //add post and a <br> element to the DOM
+    parent.append(div)
+    parent.append(document.createElement('br'))
+}
